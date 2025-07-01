@@ -1,0 +1,117 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: initial
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: created
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: login
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: password
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+
+        - createTable:
+            tableName: employees
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: created
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+              - column:
+                  name: user_id
+                  type: uuid
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_employees_user
+                    references: users(id)
+
+        - createTable:
+            tableName: employee_studies
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: created
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: study_name
+                  type: varchar(255)
+              - column:
+                  name: employee_id
+                  type: uuid
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_employee_studies_employee
+                    references: employees(id)
+  - changeSet:
+      id: 2
+      author: default-admin
+      changes:
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  value: "123e4567-e89b-12d3-a456-426614174000"
+              - column:
+                  name: login
+                  value: "admin"
+              - column:
+                  name: password
+                  value: "$2a$10$RgZJ.6ISPWl6pxmxH0TRoeSDKL9xQWmSZ1.3G6FoFnAqOQlqjNa4m"
+              - column:
+                  name: created
+                  value: "2025-06-30 00:00:00"
+              - column:
+                  name: updated
+                  value: "2025-06-30 00:00:00"

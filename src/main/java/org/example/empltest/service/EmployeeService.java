@@ -10,11 +10,13 @@ import org.example.empltest.domain.entity.UserEntity;
 import org.example.empltest.repository.EmployeeRepository;
 import org.example.empltest.repository.UserRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 import java.util.UUID;
 
 @Service
+@Validated
 @RequiredArgsConstructor
 public class EmployeeService {
     private final EmployeeRepository employeeRepository;
