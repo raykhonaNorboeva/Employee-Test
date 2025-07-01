@@ -30,6 +30,12 @@ public class EmployeeStudyController {
     }
 
 
+    @GetMapping("/get-studies-by-id/{employeeId}")
+    public ResponseEntity<List<EmployeeStudyDto>> getByEmployee(@PathVariable UUID employeeId) {
+        return ResponseEntity.ok(service.getByEmployeeIdDto(employeeId));
+    }
+
+
     @PutMapping("/update")
     public ResponseEntity<String> update(@RequestBody EmployeeStudyRequest request) {
         service.update(request.getEmployeeId(), request.getStudyName());

@@ -22,5 +22,6 @@ public class EmployeeEntity extends BaseEntity {
     private List<EmployeeStudyEntity> studies = new ArrayList<>();
 
     @OneToOne
+    @JoinColumn(name = "user_id", nullable = false)
     private UserEntity userEntity;
 }

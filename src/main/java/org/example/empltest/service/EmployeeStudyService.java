@@ -36,6 +36,12 @@ public class EmployeeStudyService {
     }
 
 
+    public List<EmployeeStudyDto> getByEmployeeIdDto(UUID employeeId) {
+        List<EmployeeStudyEntity> list = studyRepo.findByEmployee_Id(employeeId);
+        return mapper.toDtoList(list);
+    }
+
+
     public EmployeeStudyEntity update(UUID id, String newStudyName) {
         EmployeeStudyEntity study = studyRepo.findById(id)
                 .orElseThrow(() -> new RuntimeException("Study not found"));
